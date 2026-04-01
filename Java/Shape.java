@@ -1,8 +1,8 @@
-class Shape{
+public abstract class Shape{
     private String color;
     
     //parameterized constructor
-    Shape(String color){
+    public Shape(String color){
         this.color = color;
     }
     
@@ -11,13 +11,11 @@ class Shape{
         return this.color;
     }
     
-    //generic method for area
-    public double getArea(){
-        return 0.0;
-    }
+    //abstract getArea()
+    public abstract double getArea();
     
-    //method for display info
-    public void displayInfo(){
-        System.out.println("Color = " +this.color);
+    public void display(){
+      System.out.println("Color = "+ this.getColor());
+      System.out.println("Area = "+this.getArea());
     }
 }

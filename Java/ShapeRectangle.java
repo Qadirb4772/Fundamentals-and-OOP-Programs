@@ -1,9 +1,10 @@
 class ShapeRectangle{
     public static void main(String[] args){
-      Rectangle rec = new Rectangle("Blue", 3.0, 5.0);
-      rec.displayInfo();
-      System.out.println("\n\tPrinting separately\n");
-      System.out.println("Area = "+rec.getArea());
-      System.out.println("Parameter = "+rec.getParameter());
+        //Shape myShape  = new Shape("White"); //this will cause error
+        Rectangle r = new Rectangle("Red", 4.0, 5.0);
+        r.display();
+        System.out.println();
+        System.out.println("Area of the rectangle is: "+ r.getArea());
+        System.out.println("Parameter of the rectangle is: "+r.getParameter());
     }
 }

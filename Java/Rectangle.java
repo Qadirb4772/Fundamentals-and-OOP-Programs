@@ -1,29 +1,24 @@
 class Rectangle extends Shape{
     private double width;
-    private double height;
+    private double length;
     
     //parameterized constructor
-    Rectangle(String color, double width, double height){
-        super(color); //calls parent class's constructor
-        this.width  = width;
-        this.height  = height;
+    public Rectangle(String color, double width, double length){
+        super(color);
+        if(width > 0 && length > 0){
+            this.width = width;
+            this.length = length;
+        }else{
+            System.out.println("Length And Width cannot be negative");
+        }
     }
     
     @Override
     public double getArea(){
-      return this.width * this.height;
+      return this.width * this.length;
     }
     
     public double getParameter(){
-      return 2*(this.width + this.height);
+      return 2*(this.width + this.length);
     }
-    
-    @Override 
-    public void displayInfo(){
-      super.displayInfo();
-      System.out.println("Width = "+this.width);
-      System.out.println("Height = "+this.height);
-      System.out.println("Area = "+this.getArea());
-      System.out.println("Parameter = "+this.getParameter());
-    }
-}
+}   
