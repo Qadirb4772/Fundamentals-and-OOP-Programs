@@ -6,6 +6,6 @@ This repository contains my practice programs in C++ Fundamentals and Java Objec
 
 ## Topics covered
 - Arrays and basic problem solving (C++)
-- Objected-Oriented Programming concepts
+- Objected-Oriented Programming concepts (Java)
 ## Status
 Beginner practice repository
