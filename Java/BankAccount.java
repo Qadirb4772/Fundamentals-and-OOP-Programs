@@ -1,23 +1,72 @@
-class BankAccount{
-    private String accountNumber;
-    private String accountHolderName;
+public class BankAccount{
+    private double balance;
     
-    //parameterized constructor
-    BankAccount(String accNo, String accHldrName){
-        this.accountNumber = accNo;
-        this.accountHolderName = accHldrName;
+    BankAccount(double initialBalance){
+        if(initialBalance < 0){
+            throw new IllegalArgumentException("Invalid Amount");
+        }
+        else{
+            this.balance = initialBalance;
+        }
+    }
+    public double getBalance(){
+      return this.balance;
+    }
+    public void deposit(double amount){
+        if(amount < 0){
+            throw new IllegalArgumentException("Invalid Amount to deposit");
+        }
+        else{
+            this.balance += amount;
+            System.out.println(amount+" deposited in your account!");
+        }
     }
     
-    //method for Mini Account Statement
-    public void display(){
-        System.out.println("Account Holder = "+this.accountHolderName);
-        System.out.println("Account Number = "+this.accountNumber);
+    public void withdraw(double amount)  throws InsufficientFundsException{
+        if(amount < 0){
+            throw new IllegalArgumentException("Invalid amount to withdraw");            
+        }
+        if(amount > this.balance){
+            throw new InsufficientFundsException("Insufficient Amount!!");
+        }else{
+            this.balance -= amount;
+            System.out.println(amount+" has been withdrawn from your account!!");
+        }
     }
     
-    //method for annual Interest Rate
-    public double annualInterestRate(){
-        //here the function returns a double (e.g 1.5) 
-        //it should be interpreted as 1.5% as its the annualInterestRate
-        return 1.5;
+    @Override
+    public String toString(){
+        return "Balance: "+this.balance;
     }
+    
+     public void transferTo(BankAccount other, double amount) throws InsufficientFundsException{
+      if(other == null){
+          throw new IllegalArgumentException("Invalid bank account!!");
+      }
+      else if(amount < 0){
+          throw new IllegalArgumentException("Invalid amount");
+      }
+      
+      else{
+          if(this.balance < amount){
+              throw new InsufficientFundsException("Insufficient Balance");
+          }else{
+              other.balance += amount;
+              this.balance -= amount;
+              
+              System.out.println(amount +" has been transfered to the account");
+          }
+      }
+  }
+  
+  public static BankAccount accountWithHigherBalance(BankAccount x, BankAccount y){
+      if(x.getBalance() > y.getBalance()){
+          return x;
+      }else if( y.getBalance() > x.getBalance()){
+          return y;
+      }else{
+          System.out.println("Both are Equal");
+          return x;
+      }
+  }
 }
