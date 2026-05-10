@@ -1,28 +1,18 @@
-abstract class Employee {
-    private String name;
-    private String employeeId;
+public abstract class Employee{
+  private String name;
+  private String id;
+  
+  public Employee(String name, String id){
+    this.name = name;
+    this.id = id;
+  }
+  
+  abstract String getRole();
+  
+  boolean isValidId(){
+    return ((this.id != null) && (this.id.length() >= 6) && (this.id.charAt(0) >= '0' && this.id.charAt(0) <= '9'));
     
-    //parameterized constructor
-    public Employee(String name, String employeeId){
-        this.name = name;
-        this.employeeId = employeeId;
-    }
     
-    //getter for name
-    public String getName(){
-        return this.name;
-    }
-    //getter for employeeID
-    public String getEmployeeId(){
-        return this.employeeId;
-    }
-    
-    //abstract method
-    public abstract double monthlyPay();
-    
-    //method for displaying information
-    public void display(){
-        System.out.println("Name = "+this.getName());
-        System.out.println("Employee ID = "+this.getEmployeeId());
-    }
-} 
+  }
+  
+}

@@ -1,63 +1,25 @@
-import java.util.Scanner;
-
 public class Main{
   public static void main(String[] args){
-    Scanner sc = new Scanner(System.in);
-    System.out.println("Enter Book (title,  type,  lateDays): ");
-    String str = sc.nextLine();
+    //1. creating employees
+   Developer em1 = new Developer("Qadir Bakhsh", "Dev1002", 80000);
+    Manager em2 = new Manager("Abrar Ahmed", "Mng1010", 120000);
     
-    String[] arr = str.split(",");
-    int lateDays = 0;
+    //2. printing roles
+    System.out.println(em1.getRole());
+    System.out.println(em2.getRole());
     
-     try {
-        lateDays = Integer.parseInt(arr[2]);
-      }catch(IllegalArgumentException e){
-        System.out.println(e.getMessage());
-      }
-    if(arr[1].equalsIgnoreCase("book")){      
-      Book b = new Book("Java The Complete Reference");
-      try {
-          b.borrowItem();
-          b.returnItem();
-      }catch(LibraryException e){
-          System.out.println(e.getMessage());
-      }
-      
-      System.out.println("Fine is: "+b.calculateFine(lateDays));
+    //3. calling doWork()
+    em2.doWork();
+    em1.doWork();
+    
+  //4,5. printing salary and handling  InvalidSalaryException  
+    try{
+      System.out.println("Salary of em1: "+em1.getSalary());
+      System.out.println("Salary of em2: "+em2.getSalary());
+    }catch( InvalidSalaryException e){
+      System.out.println(e.getMessage());
     }
-    else if(arr[1].equalsIgnoreCase("dvd")){
-      try {
-        lateDays = Integer.parseInt(arr[2]);
-      }catch(IllegalArgumentException e){
-        System.out.println(e.getMessage());
-      }
-      
-      DVD d = new DVD("RRR");
-      try {
-          d.borrowItem();
-          d.returnItem();
-     }catch (LibraryException e){
-        System.out.println(e.getMessage());
-     }
-      
-      
-      System.out.println("Fine is: "+d.calculateFine(lateDays));
-      try {
-          d.returnItem();
-      }catch (LibraryException e){
-          System.out.println(e.getMessage());
-      }
-    }
-    else if(arr[1].equalsIgnoreCase("ref")){
-      ReferenceBook ref = new ReferenceBook("Ref Book");
-      
-      try {
-          ref.borrowItem();
-          ref.returnItem();
-     }catch(LibraryException e){
-          System.out.println("Invalid Action cannot borrow or return reference book");    
-         }
-    }
+    
     
   }
 }
