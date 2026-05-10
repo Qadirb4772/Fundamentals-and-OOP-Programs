@@ -1,28 +1,63 @@
-public class ExamMain{
+import java.util.Scanner;
+
+public class Main{
   public static void main(String[] args){
-  //1. Creating 1 Student and 1 Lab Assistant 
-    Student s1 = new Student("Abrar Ahmed", "ST-010");
-    LabAssistant assistant = new LabAssistant("Abdul Rauf", "ST-120");
+    Scanner sc = new Scanner(System.in);
+    System.out.println("Enter Book (title,  type,  lateDays): ");
+    String str = sc.nextLine();
     
-    //2. Printing each's role
-    System.out.println(s1.getRole());
-    System.out.println(assistant.getRole());
+    String[] arr = str.split(",");
+    int lateDays = 0;
     
-    //3. requesting access
-   try {
-      s1.requestAccess();
-   }catch(InvalidAccessException e){
-       System.out.println(e.getMessage());
+     try {
+        lateDays = Integer.parseInt(arr[2]);
+      }catch(IllegalArgumentException e){
+        System.out.println(e.getMessage());
       }
+    if(arr[1].equalsIgnoreCase("book")){      
+      Book b = new Book("Java The Complete Reference");
+      try {
+          b.borrowItem();
+          b.returnItem();
+      }catch(LibraryException e){
+          System.out.println(e.getMessage());
+      }
+      
+      System.out.println("Fine is: "+b.calculateFine(lateDays));
+    }
+    else if(arr[1].equalsIgnoreCase("dvd")){
+      try {
+        lateDays = Integer.parseInt(arr[2]);
+      }catch(IllegalArgumentException e){
+        System.out.println(e.getMessage());
+      }
+      
+      DVD d = new DVD("RRR");
+      try {
+          d.borrowItem();
+          d.returnItem();
+     }catch (LibraryException e){
+        System.out.println(e.getMessage());
+     }
+      
+      
+      System.out.println("Fine is: "+d.calculateFine(lateDays));
+      try {
+          d.returnItem();
+      }catch (LibraryException e){
+          System.out.println(e.getMessage());
+      }
+    }
+    else if(arr[1].equalsIgnoreCase("ref")){
+      ReferenceBook ref = new ReferenceBook("Ref Book");
+      
+      try {
+          ref.borrowItem();
+          ref.returnItem();
+     }catch(LibraryException e){
+          System.out.println("Invalid Action cannot borrow or return reference book");    
+         }
+    }
     
-    //4. can student access lab
-    System.out.println(s1.canAccessLab());
-    
-    //5. can Lab Assistant access lab
-    System.out.println(assistant.canAccessLab());
-    
-    //6. calling performDuty();
-    s1.performDuty();
-    assistant.performDuty();
   }
 }
