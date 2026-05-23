@@ -1,27 +1,25 @@
-abstract class LibraryItem{
-  String title;
-  boolean isBorrowed;
-  LibraryItem(String title){
+public class LibraryItem{
+  private String title;
+  private String catalogId;
+  
+  public LibraryItem(String title, String catalogId){
     this.title = title;
-    this.isBorrowed = false;
-  }
-  abstract int getMaxDays();
-  
-  void borrowItem() throws LibraryException{
-    if(!isBorrowed){
-      this.isBorrowed = false;
-      System.out.println("Book Borrowed");
-    }else{
-      throw new LibraryException("Invalid Action Book is already is Borrowed");
-    }
+    this.catalogId = catalogId;
   }
   
-  void returnItem() throws LibraryException{
-    if(isBorrowed){
-      this.isBorrowed = false;
-      System.out.println("Book Returned");
-    }else{
-      throw new LibraryException("Invalid Action Book is already returned");
-    }
+  public String getTitle(){
+    return this.title;
+  }
+  
+  public String getCatalogId(){
+    return this.catalogId;
+  }
+  
+  public String availabilityNote(){
+    return "See front desk for details";
+  }
+  
+  public void summaryLine(){
+    System.out.println("Title = "+this.title+"\nCatalog ID: "+this.catalogId);
   }
 }
