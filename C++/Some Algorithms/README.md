@@ -1,4 +1,4 @@
-#Some Algorithms
+# Some Algorithms
 This folders contains some basic searching and sorting algorithms like LinearSearch, BinarySearch, and BubbleSort etc,
-##Languages Used
+## Languages Used
 - C++
