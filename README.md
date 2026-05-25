@@ -8,4 +8,4 @@ This repository contains my practice programs in C++ Fundamentals and Java Objec
 - Arrays and basic problem solving (C++)
 - Objected-Oriented Programming concepts (Java)
 ## Status
-Beginner practice repository
+Beginner to Intermediate practice repository
